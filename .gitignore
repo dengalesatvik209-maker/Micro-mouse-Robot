@@ -1,0 +1,25 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Build & IDE artifacts (Arduino / PlatformIO / STM32CubeIDE / VS Code)
+.pio/
+.vscode/
+build/
+Debug/
+Release/
+*.hex
+*.bin
+*.elf
+*.o
+*.d
+*.map
+
+# Temporary & backup files
+*.tmp
+*.bak
+~$*
+
+# Netlify local state
+.netlify/

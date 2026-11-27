@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Micromouse Robot — Autonomous Maze-Solving Robot</title>
+  <meta name="description" content="Micromouse Robot Project Website: Interactive 3D design with all components, laser-cutting sheet, circuit diagram, Flood Fill algorithm, and live prototype testing." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <!-- Top Mobile Bar -->
+  <header class="topbar">
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="#overview" class="topbar-brand">
+      <span class="brand-dot"></span>
+      Micromouse Robot
+    </a>
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle color theme" title="Toggle theme">
+      <span class="theme-icon">☀</span>
+    </button>
+  </header>
+
+  <div class="layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="#overview" class="brand">
+          <div class="brand-badge">MM</div>
+          <div>
+            <div class="brand-title">Micromouse</div>
+            <div class="brand-sub">Mechanical • Makerspace</div>
+          </div>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+          <span class="theme-icon">☀</span>
+        </button>
+      </div>
+
+      <nav class="nav" aria-label="Website sections">
+        <div class="nav-group">Introduction</div>
+        <a href="#overview" class="nav-link active">Overview</a>
+        <a href="#objectives" class="nav-link">Project Objectives</a>
+
+        <div class="nav-group">3D CAD &amp; Fabrication</div>
+        <a href="#design-3d" class="nav-link">3D Design (All Components)</a>
+        <a href="#laser-cutting" class="nav-link">Laser Cutting &amp; Blueprint</a>
+
+        <div class="nav-group">Hardware &amp; Electronics</div>
+        <a href="#hardware" class="nav-link">Hardware Components</a>
+        <a href="#sensors" class="nav-link">Sensors &amp; Functions</a>
+        <a href="#circuit" class="nav-link">Circuit Diagram</a>
+        <a href="#prototype" class="nav-link">Prototype &amp; Live Videos</a>
+
+        <div class="nav-group">Control &amp; Algorithm</div>
+        <a href="#architecture" class="nav-link">System Architecture</a>
+        <a href="#workflow" class="nav-link">How It Works</a>
+        <a href="#flood-fill" class="nav-link">Flood Fill Algorithm</a>
+
+        <div class="nav-group">Testing &amp; Summary</div>
+        <a href="#testing" class="nav-link">Assembly &amp; Testing</a>
+        <a href="#outcomes" class="nav-link">Outcomes &amp; Conclusion</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <span>SENSE • MAP • PLAN • MOVE</span>
+      </div>
+    </aside>
+
+    <div class="backdrop" id="backdrop"></div>
+
+    <!-- Main Content -->
+    <main class="content">
+      <!-- Hero / Overview -->
+      <section id="overview" class="hero section">
+        <div class="eyebrow">ROBOTICS • AUTONOMOUS NAVIGATION • MECHANICAL ENGINEERING • MAKERSPACE</div>
+        <h1>Micromouse Robot</h1>
+        <p class="lead">
+          An autonomous maze-solving robot designed to navigate a maze without human control —
+          sensing surroundings, building a map, planning a route, and moving with repeatable precision.
+        </p>
+
+        <div class="pill-row">
+          <span class="pill">01 Sense</span>
+          <span class="pill">02 Map</span>
+          <span class="pill">03 Plan</span>
+          <span class="pill">04 Move</span>
+        </div>
+
+        <div class="hero-grid">
+          <div class="card">
+            <h3>What is a Micromouse?</h3>
+            <ul class="clean-list">
+              <li>Micromouse is a small autonomous robot challenge.</li>
+              <li>The robot detects maze walls using onboard distance sensors.</li>
+              <li>It builds an internal map and decides where to move.</li>
+              <li>Its goal is to reach the maze centre or target cell.</li>
+              <li>A faster speed run may be attempted after learning the maze.</li>
+            </ul>
+            <div class="core-box">
+              <div class="core-label">Core Idea</div>
+              <p class="core-quote">Sense surroundings, update the map, choose a route, and move accurately.</p>
+            </div>
+          </div>
+
+          <div class="card media-hero-card">
+            <figure class="media-figure">
+              <img src="assets/media/robot-front.jpg" alt="Front view of the Micromouse prototype showing Arduino Uno, L298N motor driver, wheels, and front ultrasonic sensor" class="zoomable-img" />
+              <figcaption>Our Micromouse hardware prototype — front view with Arduino Uno, motor driver, and front distance sensor.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Project Objectives -->
+      <section id="objectives" class="section">
+        <div class="section-head">
+          <span class="section-tag">01 / Objectives</span>
+          <h2>Project Objectives</h2>
+          <p>What we aim to learn, build, and demonstrate.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-icon">🤖</div>
+            <h3>Autonomous Movement</h3>
+            <p>Move through the maze cleanly without remote control.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📡</div>
+            <h3>Wall Detection</h3>
+            <p>Identify walls and open paths accurately using sensors.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🧭</div>
+            <h3>Path Planning</h3>
+            <p>Select an optimal route using a maze-solving algorithm.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">⚙️</div>
+            <h3>Motor Control</h3>
+            <p>Control wheel speed and turns with repeatable motion.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔌</div>
+            <h3>Integration</h3>
+            <p>Connect mechanical hardware, embedded firmware, and sensing.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🧪</div>
+            <h3>Testing</h3>
+            <p>Measure motion accuracy and improve run-to-run reliability.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive 3D Design + Exploded CAD Render -->
+      <section id="design-3d" class="section">
+        <div class="section-head">
+          <span class="section-tag">02 / 3D CAD Design</span>
+          <h2>3D Design — All Components</h2>
+          <p>Drag to rotate the interactive 3D Micromouse assembly, toggle Exploded View, or inspect the full 3D CAD render below.</p>
+        </div>
+
+        <!-- Interactive 3D Canvas Viewer -->
+        <div class="card viewer-card">
+          <div class="viewer-toolbar">
+            <div class="viewer-controls">
+              <button class="ctrl-btn active" id="toggleExplode" type="button">Exploded View</button>
+              <button class="ctrl-btn" id="toggleSpin" type="button">Auto-Rotate: On</button>
+              <button class="ctrl-btn" id="resetView3d" type="button">Reset Angle</button>
+            </div>
+            <span class="muted-small">Drag to rotate 360° • Scroll to zoom</span>
+          </div>
+
+          <div class="viewer-stage">
+            <canvas id="mouse3dCanvas" width="880" height="460" aria-label="Interactive 3D Micromouse component assembly"></canvas>
+          </div>
+
+          <div class="part-chips" id="partChips">
+            <button class="part-chip active" data-part="all" type="button">All Components (8)</button>
+            <button class="part-chip" data-part="chassis" type="button">Laser-Cut Chassis</button>
+            <button class="part-chip" data-part="arduino" type="button">Arduino Uno</button>
+            <button class="part-chip" data-part="l298n" type="button">L298N Motor Driver</button>
+            <button class="part-chip" data-part="ultrasonic" type="button">HC-SR04 Ultrasonic</button>
+            <button class="part-chip" data-part="servo" type="button">SG90 Servo</button>
+            <button class="part-chip" data-part="motors" type="button">BO Motors &amp; Wheels</button>
+            <button class="part-chip" data-part="power" type="button">4× AA Battery &amp; Switch</button>
+          </div>
+          <div class="part-info" id="partInfo">
+            <strong>All Components:</strong> Complete 3D assembly showing how the controller, motor driver, sensors, motors, wheels, battery pack, and switch mount onto the laser-cut chassis.
+          </div>
+        </div>
+
+        <!-- 3D Component Assembly Video (Rendered Animation) -->
+        <div class="card media-row-top">
+          <div class="grid-header">
+            <div>
+              <h3>3D Micromouse &amp; Components Assembly Video</h3>
+              <p class="muted-small video-caption">Step-by-step 3D animated assembly: Laser-Cut Chassis → BO Motors &amp; Wheels → L298N Driver → Arduino Uno → SG90 Servo &amp; HC-SR04 → Battery &amp; Switch.</p>
+            </div>
+            <a class="download-btn" href="assets/media/micromouse-3d-assembly.mp4" download="micromouse-3d-assembly.mp4">
+              ⬇ Download 3D Video (.mp4)
+            </a>
+          </div>
+          <div class="video-wrap">
+            <video controls playsinline preload="metadata" poster="assets/media/3d-exploded-design.jpg">
+              <source src="assets/media/micromouse-3d-assembly.mp4" type="video/mp4" />
+              Your browser does not support HTML5 video playback.
+            </video>
+          </div>
+        </div>
+
+        <!-- High-Res 3D Exploded CAD Image & CAD Video -->
+        <div class="hero-grid media-row-top">
+          <div class="card">
+            <figure class="media-figure">
+              <img src="assets/media/3d-exploded-design.jpg" alt="3D exploded CAD render of Micromouse showing chassis, Arduino Uno, L298N motor driver, BO motors, wheels, HC-SR04 ultrasonic sensor, SG90 servo, battery pack, and switch" class="zoomable-img cad-render-img" />
+              <figcaption><strong>3D Exploded CAD Render:</strong> Complete component stack — Arduino Uno, L298N driver, 4× AA battery &amp; switch, dual BO motors &amp; wheels, HC-SR04 + SG90 servo, and slotted laser-cut chassis. (Click to zoom)</figcaption>
+            </figure>
+          </div>
+
+          <div class="card">
+            <h3>3D CAD Chassis Model Video</h3>
+            <p class="muted-small video-caption">360° CAD inspection of the custom chassis baseplate, wheel bays, and front sensor bracket.</p>
+            <div class="video-wrap">
+              <video controls playsinline preload="metadata">
+                <source src="assets/media/cad-chassis-model.mp4" type="video/mp4" />
+                Your browser does not support HTML5 video playback.
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Laser Cutting Photo & Downloadable 2D Cut Blueprint -->
+      <section id="laser-cutting" class="section">
+        <div class="section-head">
+          <span class="section-tag">03 / Fabrication</span>
+          <h2>Laser Cutting Layout &amp; Photos</h2>
+          <p>Precision 2D laser-cut parts prepared for 3 mm matte black acrylic or birch plywood — including main chassis, top electronics deck, motor brackets, and HC-SR04 sensor mount.</p>
+        </div>
+
+        <div class="card">
+          <figure class="media-figure">
+            <img src="assets/media/laser-cutting-photo.svg" alt="Laser cutting sheet on honeycomb laser cutter bed showing main Micromouse chassis baseplate, top deck, motor brackets, and ultrasonic sensor mount" class="zoomable-img laser-photo-img" />
+            <figcaption><strong>Laser Cutter Bed View:</strong> 3.0 mm acrylic sheet cut layout showing the main slotted chassis, upper electronics deck, left/right BO motor mounts, HC-SR04 bracket, and switch plate. (Click to zoom)</figcaption>
+          </figure>
+        </div>
+
+        <div class="hero-grid media-row-top">
+          <div class="card">
+            <figure class="media-figure">
+              <img src="assets/media/micromouse-laser-cut.svg" alt="2D CAD laser cutting blueprint with red cut lines and blue engrave dimensions" class="zoomable-img blueprint-img" />
+              <figcaption><strong>2D Cut Blueprint (300 × 200 mm):</strong> Red paths = 0.1 mm laser cut lines; Blue text = engrave markings.</figcaption>
+            </figure>
+          </div>
+
+          <div class="card laser-spec-card">
+            <div>
+              <h3>Laser Cutting Specifications</h3>
+              <ul class="clean-list">
+                <li><strong>Sheet Material:</strong> 3.0 mm Acrylic or Birch Plywood</li>
+                <li><strong>Sheet Size:</strong> 300 × 200 mm (fits all 6 parts on one sheet)</li>
+                <li><strong>Chassis Footprint:</strong> 110 × 155 mm with side wheel bays</li>
+                <li><strong>Screw Holes:</strong> 3.2 mm diameter for M3 standoffs (Arduino &amp; L298N)</li>
+                <li><strong>Cut / Engrave Colors:</strong> Red (<code>#FF0000</code>) Cut • Blue (<code>#0066FF</code>) Engrave</li>
+              </ul>
+            </div>
+
+            <div class="download-row">
+              <a class="download-btn" href="assets/media/micromouse-laser-cut.svg" download="micromouse-laser-cut.svg">
+                ⬇ Download 2D Laser-Cut SVG
+              </a>
+              <a class="secondary-btn" href="assets/media/laser-cutting-photo.svg" download="laser-cutting-photo.svg">
+                ⬇ Download Bed Layout SVG
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Hardware Components -->
+      <section id="hardware" class="section">
+        <div class="section-head">
+          <span class="section-tag">04 / Hardware</span>
+          <h2>Main Hardware Components</h2>
+          <p>Core subsystems from our prototype build and standard Micromouse architecture.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Controller</h3>
+            <p><strong>Arduino Uno</strong> in our prototype (supports Arduino, ESP32, STM32, or other microcontrollers).</p>
+          </div>
+          <div class="card">
+            <h3>Drive System</h3>
+            <p>Two DC geared BO motors, high-grip wheels, and an <strong>L298N</strong> dual H-bridge motor driver.</p>
+          </div>
+          <div class="card">
+            <h3>Sensors</h3>
+            <p><strong>HC-SR04</strong> ultrasonic sensor in our prototype; extensible to IR/ToF sensors, encoders, and IMU.</p>
+          </div>
+          <div class="card">
+            <h3>Power</h3>
+            <p>4× AA battery pack, voltage regulation, rocker power switch, and colour-coded jumper wiring.</p>
+          </div>
+          <div class="card">
+            <h3>Chassis</h3>
+            <p>Laser-cut 3 mm chassis body, upper electronics deck, and front sensor mount designed in CAD.</p>
+          </div>
+          <div class="card">
+            <h3>Optional Modules</h3>
+            <p>SG90 servo mount for scanning, status LEDs, buzzer, display, or gyroscope.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sensors and Their Functions -->
+      <section id="sensors" class="section">
+        <div class="section-head">
+          <span class="section-tag">05 / Sensing</span>
+          <h2>Sensors and Their Functions</h2>
+          <p>Sensor feedback helps the robot understand the maze and control its motion.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card accent-border">
+            <h3>Distance Sensors (Ultrasonic / IR / ToF)</h3>
+            <p>Detect nearby walls and estimate obstacle distance.</p>
+            <ul class="clean-list compact">
+              <li><strong>Front sensing:</strong> identifies a wall ahead before turning.</li>
+              <li><strong>Side sensing:</strong> maps left and right walls in corridors.</li>
+            </ul>
+          </div>
+          <div class="card accent-border">
+            <h3>Wheel Encoders</h3>
+            <p>Estimate wheel rotation and exact travel distance.</p>
+            <ul class="clean-list compact">
+              <li>Measures single-cell forward displacement.</li>
+              <li>Supports repeatable straight runs and turns.</li>
+            </ul>
+          </div>
+          <div class="card accent-border">
+            <h3>Gyroscope / IMU</h3>
+            <p>Track rotation and maintain straight heading.</p>
+            <ul class="clean-list compact">
+              <li>Reduces drift over long straight corridors.</li>
+              <li>Improves 90° and 180° turn accuracy.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Circuit Diagram -->
+      <section id="circuit" class="section">
+        <div class="section-head">
+          <span class="section-tag">06 / Electronics</span>
+          <h2>Circuit &amp; Wiring Diagram</h2>
+          <p>Complete schematic connecting the Arduino Uno, L298N motor driver, DC motors, HC-SR04 sensor, servo, power switch, and battery pack. Click the diagram to enlarge.</p>
+        </div>
+
+        <div class="card">
+          <figure class="media-figure">
+            <img src="assets/media/circuit-diagram.jpg" alt="Wiring diagram showing Arduino Uno, L298N motor driver, two DC motors, HC-SR04 ultrasonic sensor, servo motor, switch, and battery pack" class="zoomable-img circuit-img" />
+            <figcaption>Wiring schematic: Arduino Uno + L298N Motor Driver + Dual DC Motors + HC-SR04 Sensor + Servo + Battery &amp; Switch.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Prototype Photos & Live Test Video -->
+      <section id="prototype" class="section">
+        <div class="section-head">
+          <span class="section-tag">07 / Build &amp; Testing</span>
+          <h2>Assembled Prototype &amp; Live Test Run</h2>
+          <p>Real photos of our assembled hardware prototype and live autonomous floor test video.</p>
+        </div>
+
+        <div class="hero-grid">
+          <div class="card">
+            <figure class="media-figure">
+              <img src="assets/media/robot-front.jpg" alt="Front view of Micromouse prototype" class="zoomable-img gallery-img" />
+              <figcaption><strong>Front Assembly:</strong> Ultrasonic distance sensor, Arduino Uno controller, and L298N motor driver stacked compactly between the wheels.</figcaption>
+            </figure>
+          </div>
+          <div class="card">
+            <figure class="media-figure">
+              <img src="assets/media/robot-side.jpg" alt="Side view of Micromouse prototype showing wheel, BO motor, wiring, and rear power switch" class="zoomable-img gallery-img" />
+              <figcaption><strong>Side Profile:</strong> Geared BO motor, rubber-tread wheel, rear power switch, and wiring harness.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="card media-row-top">
+          <h3>Live Prototype Test Run</h3>
+          <p class="muted-small video-caption">Autonomous obstacle sensing and steering test of the assembled Arduino prototype.</p>
+          <div class="video-wrap">
+            <video controls playsinline preload="metadata">
+              <source src="assets/media/live-prototype-test.mp4" type="video/mp4" />
+              Your browser does not support HTML5 video playback.
+            </video>
+          </div>
+        </div>
+      </section>
+
+      <!-- System Architecture -->
+      <section id="architecture" class="section">
+        <div class="section-head">
+          <span class="section-tag">08 / Architecture</span>
+          <h2>System Architecture</h2>
+          <p>Information flows from sensors to decision-making and then to the motors.</p>
+        </div>
+
+        <div class="card arch-card">
+          <div class="arch-flow">
+            <div class="arch-node">
+              <div class="arch-title">SENSORS</div>
+              <div class="arch-sub">Ultrasonic / IR / ToF • Encoders • IMU</div>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node">
+              <div class="arch-title">CONTROLLER</div>
+              <div class="arch-sub">Read Inputs</div>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node highlight">
+              <div class="arch-title">ALGORITHM</div>
+              <div class="arch-sub">Maze Map • Flood Fill</div>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node">
+              <div class="arch-title">MOTOR DRIVER</div>
+              <div class="arch-sub">PWM / Control Signals</div>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node">
+              <div class="arch-title">MOTORS</div>
+              <div class="arch-sub">Left &amp; Right Wheel Movement</div>
+            </div>
+          </div>
+          <div class="feedback-note">
+            <strong>Feedback Loop:</strong> New sensor readings continuously help correct the next movement.
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works -->
+      <section id="workflow" class="section">
+        <div class="section-head">
+          <span class="section-tag">09 / Operation</span>
+          <h2>How the Robot Works</h2>
+          <p>A repeated Sense–Decide–Move cycle. Click any step to inspect what happens.</p>
+        </div>
+
+        <div class="cycle-tabs" id="cycleTabs" role="tablist">
+          <button class="cycle-tab active" data-step="0">01 Sense</button>
+          <button class="cycle-tab" data-step="1">02 Map</button>
+          <button class="cycle-tab" data-step="2">03 Plan</button>
+          <button class="cycle-tab" data-step="3">04 Move</button>
+          <button class="cycle-tab" data-step="4">05 Repeat</button>
+        </div>
+
+        <div class="card cycle-detail" id="cycleDetail">
+          <h3 id="cycleTitle">01. Sense</h3>
+          <p id="cycleDesc">Read wall sensors, wheel encoders, and orientation to measure obstacles and robot position.</p>
+        </div>
+      </section>
+
+      <!-- Flood Fill Algorithm -->
+      <section id="flood-fill" class="section">
+        <div class="section-head">
+          <span class="section-tag">10 / Algorithm</span>
+          <h2>Maze Algorithm: Flood Fill</h2>
+          <p>A common Micromouse method for finding the shortest route through maze cells.</p>
+        </div>
+
+        <div class="hero-grid">
+          <div class="card">
+            <h3>Algorithm Steps</h3>
+            <ol class="step-list">
+              <li>Assign the goal cell a distance of zero (<code>0</code>).</li>
+              <li>Spread distance values outward through open cells.</li>
+              <li>Walls block distance propagation between adjacent cells.</li>
+              <li>Move to a neighbouring cell with a lower distance value.</li>
+              <li>Recalculate distances whenever new walls change the map.</li>
+            </ol>
+          </div>
+
+          <div class="card">
+            <div class="grid-header">
+              <h3>Illustrative Distance Map</h3>
+              <span class="badge">Interactive 5×5 Grid</span>
+            </div>
+            <p class="muted-small">Click any cell to trace a route toward the <code>0</code> goal cell:</p>
+            <div class="flood-grid" id="floodGrid" aria-label="Interactive Flood Fill distance map"></div>
+            <div class="flood-status" id="floodStatus">Goal cell is at value <strong>0</strong>. Click any cell to highlight the shortest descent!</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prototype Assembly & Testing -->
+      <section id="testing" class="section">
+        <div class="section-head">
+          <span class="section-tag">11 / Validation</span>
+          <h2>Prototype Assembly &amp; Testing</h2>
+          <p>Build, verify, and refine the robot in stages.</p>
+        </div>
+
+        <div class="hero-grid">
+          <div class="card">
+            <h3>Assembly &amp; Calibration Steps</h3>
+            <ol class="step-list">
+              <li>Mount motors and wheels securely on the chassis.</li>
+              <li>Position sensors cleanly to detect maze walls.</li>
+              <li>Connect controller, motor driver, sensors, and power.</li>
+              <li>Check sensor readings and motor spin direction.</li>
+              <li>Test in a simple maze and calibrate movement.</li>
+            </ol>
+          </div>
+
+          <div class="card">
+            <div class="grid-header">
+              <h3>Testing Checklist</h3>
+              <button class="reset-btn" id="resetChecklist" type="button">Reset</button>
+            </div>
+            <ul class="checklist" id="testingChecklist">
+              <li><label><input type="checkbox" data-check="sensors" /> <span>Sensor readings</span></label></li>
+              <li><label><input type="checkbox" data-check="motors" /> <span>Motor direction</span></label></li>
+              <li><label><input type="checkbox" data-check="straight" /> <span>Straight-line motion</span></label></li>
+              <li><label><input type="checkbox" data-check="turns" /> <span>90° turns</span></label></li>
+              <li><label><input type="checkbox" data-check="wallmap" /> <span>Wall-map accuracy</span></label></li>
+              <li><label><input type="checkbox" data-check="routes" /> <span>Repeatable routes</span></label></li>
+            </ul>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+              <span class="progress-text" id="progressText">0 / 6 completed</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Learning Outcomes & Conclusion -->
+      <section id="outcomes" class="section">
+        <div class="section-head">
+          <span class="section-tag">12 / Conclusion</span>
+          <h2>Learning Outcomes &amp; Applications</h2>
+          <p>Micromouse concepts extend beyond maze competitions to real-world indoor navigation and robotics.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Robotics</h3>
+            <p>Autonomous navigation, sensing, and closed-loop feedback control.</p>
+          </div>
+          <div class="card">
+            <h3>Engineering Skills</h3>
+            <p>CAD modeling, laser-cut fabrication, electronics integration, programming, debugging, and teamwork.</p>
+          </div>
+          <div class="card">
+            <h3>Algorithms</h3>
+            <p>Search, path planning, mapping, and route optimization.</p>
+          </div>
+        </div>
+
+        <div class="callout conclusion-banner">
+          <div>
+            <strong>Conclusion:</strong> Micromouse combines sensors, motors, control, and algorithms to solve a maze autonomously.
+          </div>
+          <div class="conclusion-cycle">SENSE • MAP • PLAN • MOVE</div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div><strong>Micromouse Robot</strong> • Autonomous Maze-Solving Project</div>
+        <div class="muted-small">Mechanical Engineering • Makerspace</div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Lightbox Modal for Photos, 3D Renders, Laser-Cut Sheets & Circuit Diagram -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Enlarged image preview">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">✕</button>
+    <img id="lightboxImg" src="" alt="" />
+    <p id="lightboxCaption"></p>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
